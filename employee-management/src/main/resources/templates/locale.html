@@ -1,0 +1,15 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "ISO-8859-1"/>
+    <title>Internationalization</title>
+</head>
+<body>
+<h2 th:text = "#{welcome.text}"></h2>
+<p>Change Language : </p>
+
+<a href='locale?language=en'>English</a>
+<a href='locale?language=fr'>French</a>
+<a href='locale?language=ja'>Japanese</a>
+</body>
+</html>

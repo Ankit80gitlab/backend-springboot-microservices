@@ -1,5 +1,7 @@
 package com.cms.employeemanagement.service;
 
+import com.cms.employeemanagement.exception.UserAlreadyFoundException;
+import com.cms.employeemanagement.exception.UserNotFoundException;
 import com.cms.employeemanagement.model.Employee;
 import com.cms.employeemanagement.model.EmployeeCredentialDTO;
 import com.cms.employeemanagement.proxy.EmployeeCredProxy;
@@ -33,16 +35,22 @@ public class EmployeeService {
 
     //git
 
-    public Employee registerEmployee(Employee employee) {
-        employeeRepository.save(employee);
-        EmployeeCredentialDTO employeeCredentialDTO = new EmployeeCredentialDTO();
-        employeeCredentialDTO.setEmail(employee.getEmail());
-        employeeCredentialDTO.setUsername(employee.getUsername());
-        employeeCredentialDTO.setPassword(employee.getPassword());
-        employeeCredProxy.sendEmpCredObjToAuthApp(employeeCredentialDTO);
-        return null;
+    public Employee registerEmployee(Employee employee) throws UserAlreadyFoundException {
+        if(employeeRepository.findById(employee.getId()).isPresent()){
+            throw new UserAlreadyFoundException("User is already registered");
+        }
+        else{
+            employeeRepository.save(employee);
+            EmployeeCredentialDTO employeeCredentialDTO = new EmployeeCredentialDTO();
+            employeeCredentialDTO.setEmail(employee.getEmail());
+            employeeCredentialDTO.setUsername(employee.getUsername());
+            employeeCredentialDTO.setPassword(employee.getPassword());
+            //employeeCredProxy.sendEmpCredObjToAuthApp(employeeCredentialDTO);
+            return employee;
+        }
+
     }
-    public Employee updateEmployee(int empId, Employee employee){
+    public Employee updateEmployee(int empId, Employee employee) throws UserNotFoundException {
         if(employeeRepository.findById(empId).isPresent()){
             Employee emp = employeeRepository.findById(empId).get();
             emp.setDesignation(employee.getDesignation());
@@ -51,19 +59,23 @@ public class EmployeeService {
             System.out.println("Employee details updated");
             return emp;
         }
-        System.out.println("Invalid employee id");
-        return null;
+        else{
+            throw new UserNotFoundException("Invalid employee id");
+        }
     }
 
-    public Employee searchEmployeeById(int empId){
+    public Employee searchEmployeeById(int empId) throws UserNotFoundException{
         if(employeeRepository.findById(empId).isPresent()){
             System.out.println("Employee with emp id "+empId+" is present");
             Employee emp = new Employee();
             employeeRepository.findById(empId).get();
             return emp;
         }
-        System.out.println("Employee with emp id "+empId+" is not present");
-        return null;
+        else{
+            System.out.println("Employee with emp id "+empId+" is not present");
+            throw new UserNotFoundException("Employee with emp id "+empId+" is not present");
+        }
+
     }
 
     public List<Employee> searchEmployeeByName(String name){

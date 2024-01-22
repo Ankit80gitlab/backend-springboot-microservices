@@ -2,9 +2,7 @@ package com.codingworld.multitenant.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-//import jakarta.persistence.*;
 
-//import javax.persistence.*;
 import javax.persistence.*;
 import java.io.Serializable;
 

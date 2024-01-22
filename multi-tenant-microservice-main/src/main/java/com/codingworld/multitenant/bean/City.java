@@ -2,8 +2,7 @@ package com.codingworld.multitenant.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-//import jakarta.persistence.*;
-
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,8 +15,13 @@ import java.io.Serializable;
 //@Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 public class City implements Serializable {
     private static final long serialVersionUID = -4551953276601557391L;
+
+//    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN",initialValue=205, allocationSize=12)
+//    @GenericGenerator(name = "incrementDomain", strategy = "increment")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "incrementDomain")
+    @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
     private String name;

@@ -3,8 +3,8 @@ server:
 
 #AWS credentials
 aws:
-  accessKey: AKIAZYY5I4TEH5SMDTQQ
-  secretKey: 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
+  accessKey: 
+  secretKey: 
   region: us-east-1
   s3:
     bucket: java-s3-file-upload

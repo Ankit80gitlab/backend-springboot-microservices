@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.codingworld.multitenant.*")
 public class MultiTenantApplication {
 
+//	https://www.youtube.com/watch?v=4jqfbiEXUtI
+
 	public static void main(String[] args) {
 		SpringApplication.run(MultiTenantApplication.class, args);
 	}

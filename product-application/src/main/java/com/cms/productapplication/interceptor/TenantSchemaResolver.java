@@ -1,11 +1,10 @@
-package com.codingworld.multitenant.interceptor;
+package com.cms.productapplication.interceptor;
 
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TenantSchemaResolver implements CurrentTenantIdentifierResolver {
-
     private String defaultTenant ="public";
 
     @Override
@@ -26,4 +25,5 @@ public class TenantSchemaResolver implements CurrentTenantIdentifierResolver {
     public boolean validateExistingCurrentSessions() {
         return true;
     }
+
 }

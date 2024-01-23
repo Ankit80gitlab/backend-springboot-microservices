@@ -1,15 +1,12 @@
-package com.codingworld.multitenant.config;
+package com.cms.productapplication.config;
 
-import com.codingworld.multitenant.interceptor.RequestInterceptor;
+import com.cms.productapplication.interceptor.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class    AppConfig implements WebMvcConfigurer
-{
-    //@Autowired
-    //MinimalInterceptor minimalInterceptor;
+public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry)
